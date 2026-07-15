@@ -15,8 +15,11 @@ import {
   IconUsers,
   IconX,
 } from '../components/icons'
+import planIndividualImg from '../assets/team/plan-individual.jpg'
 import planDuoImg from '../assets/team/plan-duo.jpg'
+import planTrioImg from '../assets/team/plan-trio.jpg'
 import coachJoaoImg from '../assets/team/coach-joao.jpg'
+import coachJorgeImg from '../assets/team/coach-jorge.jpg'
 import coachGabrielImg from '../assets/team/coach-gabriel.jpg'
 import coachMiguelImg from '../assets/team/coach-miguel.jpg'
 import teamGroupImg from '../assets/team/team-group.jpg'
@@ -69,6 +72,7 @@ const PLANS: { icon: typeof IconDumbbell; title: Bilingual; tagline: Bilingual; 
       pt: 'O teu ritmo, o teu foco, a tua evolução.',
       en: 'Your pace, your focus, your progress.',
     },
+    photo: planIndividualImg,
   },
   {
     icon: IconUsers,
@@ -94,6 +98,7 @@ const PLANS: { icon: typeof IconDumbbell; title: Bilingual; tagline: Bilingual; 
       pt: 'Mais dinâmica, mais ritmo, o mesmo foco no resultado.',
       en: 'More dynamic, more rhythm, same focus on results.',
     },
+    photo: planTrioImg,
   },
 ]
 
@@ -117,6 +122,7 @@ const TEAM: { name: string; role: Bilingual; bio: Bilingual; initials: string; p
       en: 'Part of the LIFT team, ready to support you in every session.',
     },
     initials: 'JA',
+    photo: coachJorgeImg,
   },
   {
     name: 'Gabriel Silva',
