@@ -15,6 +15,11 @@ import {
   IconUsers,
   IconX,
 } from '../components/icons'
+import planDuoImg from '../assets/team/plan-duo.jpg'
+import coachJoaoImg from '../assets/team/coach-joao.jpg'
+import coachGabrielImg from '../assets/team/coach-gabriel.jpg'
+import coachMiguelImg from '../assets/team/coach-miguel.jpg'
+import teamGroupImg from '../assets/team/team-group.jpg'
 
 // ---------------------------------------------------------------------------
 // Business constants — swap these (and the images below) to re-theme this
@@ -52,7 +57,7 @@ const HOURS: HourRow[] = [
 type Bilingual = { pt: string; en: string }
 
 // Straight from the "Us" Instagram highlight — the studio's actual 3 training formats.
-const PLANS: { icon: typeof IconDumbbell; title: Bilingual; tagline: Bilingual; quote: Bilingual }[] = [
+const PLANS: { icon: typeof IconDumbbell; title: Bilingual; tagline: Bilingual; quote: Bilingual; photo?: string }[] = [
   {
     icon: IconUser,
     title: { pt: 'Individual', en: 'Individual' },
@@ -76,6 +81,7 @@ const PLANS: { icon: typeof IconDumbbell; title: Bilingual; tagline: Bilingual; 
       pt: 'Partilha o foco, mantém a motivação.',
       en: 'Share the focus, keep the motivation.',
     },
+    photo: planDuoImg,
   },
   {
     icon: IconFlame,
@@ -101,6 +107,7 @@ const TEAM: { name: string; role: Bilingual; bio: Bilingual; initials: string; p
       en: 'Part of the LIFT team, ready to support you in every session.',
     },
     initials: 'JM',
+    photo: coachJoaoImg,
   },
   {
     name: 'Jorge Azevedo',
@@ -119,6 +126,7 @@ const TEAM: { name: string; role: Bilingual; bio: Bilingual; initials: string; p
       en: 'Part of the LIFT team, ready to support you in every session.',
     },
     initials: 'GS',
+    photo: coachGabrielImg,
   },
   {
     name: 'Miguel Rosa',
@@ -128,6 +136,7 @@ const TEAM: { name: string; role: Bilingual; bio: Bilingual; initials: string; p
       en: 'Part of the LIFT team, ready to support you in every session.',
     },
     initials: 'MR',
+    photo: coachMiguelImg,
   },
 ]
 
@@ -423,6 +432,7 @@ function Hero() {
 function Team() {
   const { tr, lang } = useLang()
   const ref = useReveal<HTMLDivElement>()
+  const groupPhotoRef = useReveal<HTMLDivElement>()
 
   return (
     <section id="team" className="relative py-24 sm:py-32">
@@ -482,6 +492,10 @@ function Team() {
             </div>
           ))}
         </div>
+
+        <div ref={groupPhotoRef} className="mt-6 overflow-hidden rounded-3xl border border-white/10">
+          <img src={teamGroupImg} alt={BUSINESS_FULL_NAME} className="w-full object-cover" />
+        </div>
       </div>
     </section>
   )
@@ -507,20 +521,29 @@ function Services() {
               <div
                 key={plan.title.en}
                 data-reveal
-                className="rounded-3xl border border-white/10 bg-ink p-7 transition-all hover:-translate-y-1 hover:border-lift-lime/40"
+                className="overflow-hidden rounded-3xl border border-white/10 bg-ink transition-all hover:-translate-y-1 hover:border-lift-lime/40"
               >
-                <div className="grid h-12 w-12 place-items-center rounded-xl bg-lift-lime text-ink">
-                  <Icon className="h-6 w-6" />
+                {plan.photo && (
+                  <img
+                    src={plan.photo}
+                    alt={plan.title[lang]}
+                    className="h-48 w-full object-cover"
+                  />
+                )}
+                <div className="p-7">
+                  <div className="grid h-12 w-12 place-items-center rounded-xl bg-lift-lime text-ink">
+                    <Icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="mt-6 text-xl font-bold text-white normal-case">
+                    {plan.title[lang]}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-white/60 normal-case">
+                    {plan.tagline[lang]}
+                  </p>
+                  <p className="mt-3 text-sm leading-relaxed text-lift-lime italic normal-case">
+                    {plan.quote[lang]}
+                  </p>
                 </div>
-                <h3 className="mt-6 text-xl font-bold text-white normal-case">
-                  {plan.title[lang]}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/60 normal-case">
-                  {plan.tagline[lang]}
-                </p>
-                <p className="mt-3 text-sm leading-relaxed text-lift-lime italic normal-case">
-                  {plan.quote[lang]}
-                </p>
               </div>
             )
           })}
