@@ -19,7 +19,6 @@ export const t = {
   nav_services: { pt: 'Serviços', en: 'Services' },
   nav_reviews: { pt: 'Avaliações', en: 'Reviews' },
   nav_visit: { pt: 'Visite-nos', en: 'Visit' },
-  nav_contact: { pt: 'Contacto', en: 'Contact' },
   nav_cta: { pt: 'Junte-se Já', en: 'Join Now' },
 
   // Hero
@@ -72,40 +71,11 @@ export const t = {
   day_sun: { pt: 'Domingo', en: 'Sunday' },
   closed: { pt: 'Encerrado', en: 'Closed' },
   address_label: { pt: 'Morada', en: 'Address' },
-  address_value: {
-    pt: 'Tv. da Carfer Nº47, 4740-010 Esposende, Portugal',
-    en: 'Tv. da Carfer Nº47, 4740-010 Esposende, Portugal',
-  },
   visit_directions: { pt: 'Como Chegar', en: 'Get Directions' },
   visit_call: { pt: 'Ligar Agora', en: 'Call Now' },
   visit_instagram: { pt: 'Instagram', en: 'Instagram' },
   visit_review: { pt: 'Deixar Avaliação Google', en: 'Leave a Google Review' },
   visit_find_google: { pt: 'Encontra-nos no Google', en: 'Find Us on Google' },
-
-  // Contact form
-  contact_eyebrow: { pt: 'Contacto', en: 'Contact' },
-  contact_title: { pt: 'Pronto Para Começar?', en: 'Ready to Get Started?' },
-  contact_subtitle: {
-    pt: 'Deixa os teus dados e entramos em contacto para marcar a tua primeira aula grátis.',
-    en: "Leave your details and we'll reach out to book your first free class.",
-  },
-  contact_name: { pt: 'Nome', en: 'Name' },
-  contact_email: { pt: 'Email', en: 'Email' },
-  contact_phone: { pt: 'Telefone', en: 'Phone' },
-  contact_message: { pt: 'Mensagem', en: 'Message' },
-  contact_message_placeholder: {
-    pt: 'Conta-nos os teus objetivos...',
-    en: 'Tell us about your goals...',
-  },
-  contact_submit: { pt: 'Enviar Pedido', en: 'Send Request' },
-  contact_submitting: { pt: 'A enviar...', en: 'Sending...' },
-  contact_success: {
-    pt: 'Obrigado! A nossa equipa vai entrar em contacto em breve.',
-    en: "Thank you! Our team will be in touch shortly.",
-  },
-  contact_error_required: { pt: 'Campo obrigatório', en: 'This field is required' },
-  contact_error_email: { pt: 'Email inválido', en: 'Invalid email' },
-  contact_error_phone: { pt: 'Telefone inválido', en: 'Invalid phone number' },
 
   // Final CTA
   final_cta_title: { pt: 'A Tua Melhor Versão Começa Aqui.', en: 'Your Best Self Starts Here.' },

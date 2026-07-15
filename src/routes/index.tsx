@@ -1,9 +1,8 @@
-import { useEffect, useMemo, useState, type FormEvent } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useLang, type Lang } from '../lib/i18n'
 import { useReveal } from '../hooks/useReveal'
 import {
   IconApple,
-  IconCheck,
   IconClock,
   IconDumbbell,
   IconFlame,
@@ -26,7 +25,7 @@ const BUSINESS_NAME = 'LIFT'
 const BUSINESS_FULL_NAME = 'LIFT - Performance and Fitness'
 const PHONE_DISPLAY = '964 888 681'
 const PHONE_TEL = '+351964888681'
-const ADDRESS_LINE = 'Tv. da Carfer Nº47, 4740-010 Esposende, Portugal'
+const ADDRESS_LINE = 'LIFT - Performance and Fitness, Tv. da Carfer, 4740-010 Esposende'
 const INSTAGRAM_HANDLE = '@lift.esposende'
 const INSTAGRAM_URL = 'https://www.instagram.com/lift.esposende/'
 const GOOGLE_RATING = 5.0
@@ -35,9 +34,8 @@ const GOOGLE_REVIEWS_COUNT = 31
 const MAPS_DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(ADDRESS_LINE)}`
 const MAPS_EMBED_URL = `https://www.google.com/maps?q=${encodeURIComponent(ADDRESS_LINE)}&output=embed`
 const GOOGLE_SEARCH_URL = `https://www.google.com/search?q=${encodeURIComponent(`${BUSINESS_FULL_NAME} Esposende`)}`
-// No Google Place ID on file yet — this search deep-links into the listing where
-// visitors can tap "Write a review"; swap for a direct writereview?placeid= link once available.
-const GOOGLE_REVIEW_URL = `https://search.google.com/local/writereview?q=${encodeURIComponent(`${BUSINESS_FULL_NAME} Esposende`)}`
+const GOOGLE_REVIEW_URL =
+  'https://www.google.com/search?sca_esv=b95d1611b6ab2c1b&sxsrf=APpeQnsw84i9xmBsHchN7M-mBq5Fh-BXVQ:1784120641260&si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_0k_3qJB0u685Fmf2SzXJWFZnwgBP1wfKJnu1DlHjgmUcXv_4si8QG5kRY7vjyT2HBVh4tjmiAcsHivuI_pl8fiIa5W-i_PYpWznQv3pFZXwHzDvkRkirPSaowvd9Ma7vR3mRps%3D&q=LIFT+-+Performance+and+Fitness+Cr%C3%ADticas&sa=X&ved=2ahUKEwi_3ruo39SVAxVLV0EAHfO1OP0Q0bkNegQIRBAF&biw=1920&bih=953&dpr=1'
 
 type HourRow = {
   dayKey: 'day_mon_fri' | 'day_sat' | 'day_sun'
@@ -162,12 +160,11 @@ const STATS: { value: string; labelKey: 'reviews_stat_rating_label' | 'reviews_s
   { value: '20+', labelKey: 'reviews_stat_classes_label' },
 ]
 
-const NAV_LINKS: { key: 'nav_team' | 'nav_services' | 'nav_reviews' | 'nav_visit' | 'nav_contact'; href: string }[] = [
+const NAV_LINKS: { key: 'nav_team' | 'nav_services' | 'nav_reviews' | 'nav_visit'; href: string }[] = [
   { key: 'nav_team', href: '#team' },
   { key: 'nav_services', href: '#services' },
   { key: 'nav_reviews', href: '#reviews' },
   { key: 'nav_visit', href: '#visit' },
-  { key: 'nav_contact', href: '#contact' },
 ]
 
 function useOpenNow() {
@@ -249,7 +246,6 @@ export default function HomePage() {
         <Services />
         <Reviews />
         <Visit />
-        <ContactSection />
         <FinalCta />
       </main>
       <Footer />
@@ -328,7 +324,7 @@ function Header() {
         <div className="hidden items-center gap-4 lg:flex">
           <LangToggle />
           <a
-            href="#contact"
+            href={`tel:${PHONE_TEL}`}
             className="rounded-full bg-lift-lime px-5 py-2.5 text-sm font-bold text-ink transition-transform hover:scale-105"
           >
             {tr('nav_cta')}
@@ -362,7 +358,7 @@ function Header() {
               </a>
             ))}
             <a
-              href="#contact"
+              href={`tel:${PHONE_TEL}`}
               onClick={() => setMenuOpen(false)}
               className="mt-2 rounded-full bg-lift-lime px-5 py-3 text-center text-sm font-bold text-ink"
             >
@@ -398,7 +394,7 @@ function Hero() {
 
         <div className="mt-9 flex flex-wrap items-center gap-4">
           <a
-            href="#contact"
+            href={`tel:${PHONE_TEL}`}
             className="rounded-full bg-lift-lime px-7 py-4 text-sm font-bold text-ink transition-transform hover:scale-105"
           >
             {tr('hero_cta_primary')}
@@ -666,7 +662,7 @@ function Visit() {
                 {tr('address_label')}
               </p>
               <p className="mt-2 text-base font-semibold text-white normal-case">
-                {tr('address_value')}
+                {ADDRESS_LINE}
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3">
@@ -698,153 +694,6 @@ function Visit() {
               className="h-full min-h-[360px] w-full"
             />
           </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-type FormState = {
-  name: string
-  email: string
-  phone: string
-  message: string
-}
-
-type FormErrors = Partial<Record<keyof FormState, string>>
-
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-const PHONE_RE = /^[+\d][\d\s()-]{6,}$/
-
-function ContactSection() {
-  const { tr } = useLang()
-  const ref = useReveal<HTMLDivElement>()
-  const [form, setForm] = useState<FormState>({ name: '', email: '', phone: '', message: '' })
-  const [errors, setErrors] = useState<FormErrors>({})
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle')
-
-  function validate(state: FormState): FormErrors {
-    const next: FormErrors = {}
-    if (!state.name.trim()) next.name = tr('contact_error_required')
-    if (!state.email.trim()) next.email = tr('contact_error_required')
-    else if (!EMAIL_RE.test(state.email)) next.email = tr('contact_error_email')
-    if (!state.phone.trim()) next.phone = tr('contact_error_required')
-    else if (!PHONE_RE.test(state.phone)) next.phone = tr('contact_error_phone')
-    return next
-  }
-
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    const validationErrors = validate(form)
-    setErrors(validationErrors)
-    if (Object.keys(validationErrors).length > 0) return
-
-    setStatus('submitting')
-    // Placeholder submit handler — wire this up to an email service or
-    // booking system endpoint.
-    await new Promise((resolve) => setTimeout(resolve, 900))
-    setStatus('success')
-    setForm({ name: '', email: '', phone: '', message: '' })
-  }
-
-  const inputClass =
-    'w-full rounded-xl border border-white/15 bg-ink px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none transition-colors focus:border-lift-lime normal-case'
-
-  return (
-    <section id="contact" className="relative py-24 sm:py-32">
-      <div className="mx-auto max-w-2xl px-5 sm:px-8">
-        <SectionHeading
-          eyebrow={tr('contact_eyebrow')}
-          title={tr('contact_title')}
-          subtitle={tr('contact_subtitle')}
-        />
-
-        <div ref={ref} data-reveal className="mt-12 rounded-3xl border border-white/10 bg-charcoal p-7 sm:p-9">
-          {status === 'success' ? (
-            <div className="flex flex-col items-center gap-4 py-8 text-center">
-              <div className="grid h-14 w-14 place-items-center rounded-full bg-lift-lime/15 text-lift-lime">
-                <IconCheck className="h-7 w-7" />
-              </div>
-              <p className="text-base font-semibold text-white normal-case">
-                {tr('contact_success')}
-              </p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
-              <div>
-                <label htmlFor="name" className="mb-2 block text-xs font-bold tracking-wide text-white/60 uppercase">
-                  {tr('contact_name')}
-                </label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  value={form.name}
-                  onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-                  className={inputClass}
-                  aria-invalid={Boolean(errors.name)}
-                />
-                {errors.name && <p className="mt-1.5 text-xs font-medium text-red-400">{errors.name}</p>}
-              </div>
-
-              <div className="grid gap-5 sm:grid-cols-2">
-                <div>
-                  <label htmlFor="email" className="mb-2 block text-xs font-bold tracking-wide text-white/60 uppercase">
-                    {tr('contact_email')}
-                  </label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={form.email}
-                    onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-                    className={inputClass}
-                    aria-invalid={Boolean(errors.email)}
-                  />
-                  {errors.email && <p className="mt-1.5 text-xs font-medium text-red-400">{errors.email}</p>}
-                </div>
-
-                <div>
-                  <label htmlFor="phone" className="mb-2 block text-xs font-bold tracking-wide text-white/60 uppercase">
-                    {tr('contact_phone')}
-                  </label>
-                  <input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    value={form.phone}
-                    onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
-                    className={inputClass}
-                    aria-invalid={Boolean(errors.phone)}
-                  />
-                  {errors.phone && <p className="mt-1.5 text-xs font-medium text-red-400">{errors.phone}</p>}
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="message" className="mb-2 block text-xs font-bold tracking-wide text-white/60 uppercase">
-                  {tr('contact_message')}
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={4}
-                  placeholder={tr('contact_message_placeholder')}
-                  value={form.message}
-                  onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
-                  className={inputClass}
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={status === 'submitting'}
-                className="mt-2 rounded-full bg-lift-lime px-7 py-4 text-sm font-bold text-ink transition-transform hover:scale-105 disabled:opacity-60 disabled:hover:scale-100"
-              >
-                {status === 'submitting' ? tr('contact_submitting') : tr('contact_submit')}
-              </button>
-            </form>
-          )}
         </div>
       </div>
     </section>
