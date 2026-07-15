@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from 'react'
 import { useLang, type Lang } from '../lib/i18n'
 import { useReveal } from '../hooks/useReveal'
 import {
-  IconApple,
   IconClock,
   IconDumbbell,
   IconFlame,
@@ -52,85 +51,83 @@ const HOURS: HourRow[] = [
 
 type Bilingual = { pt: string; en: string }
 
-const SERVICES: { icon: typeof IconDumbbell; title: Bilingual; desc: Bilingual }[] = [
+// Straight from the "Us" Instagram highlight — the studio's actual 3 training formats.
+const PLANS: { icon: typeof IconDumbbell; title: Bilingual; tagline: Bilingual; quote: Bilingual }[] = [
   {
     icon: IconUser,
-    title: { pt: 'Treino Personalizado', en: 'Personal Training' },
-    desc: {
-      pt: 'Sessões 1-para-1 desenhadas à volta dos teus objetivos, com acompanhamento de perto em cada repetição.',
-      en: 'One-on-one sessions built around your goals, with close coaching on every rep.',
+    title: { pt: 'Individual', en: 'Individual' },
+    tagline: {
+      pt: '100% personalizado. O PT contigo, do primeiro ao último movimento.',
+      en: 'Your coach with you, from the first rep to the last.',
     },
-  },
-  {
-    icon: IconDumbbell,
-    title: { pt: 'Treino de Força', en: 'Strength Training' },
-    desc: {
-      pt: 'Programas progressivos para ganhares força real, com técnica em primeiro lugar.',
-      en: 'Progressive programming to build real strength, with technique always first.',
-    },
-  },
-  {
-    icon: IconFlame,
-    title: { pt: 'HIIT', en: 'HIIT' },
-    desc: {
-      pt: 'Treino intervalado de alta intensidade para queimar calorias e melhorar a condição física.',
-      en: 'High-intensity interval training to torch calories and boost conditioning.',
+    quote: {
+      pt: 'O teu ritmo, o teu foco, a tua evolução.',
+      en: 'Your pace, your focus, your progress.',
     },
   },
   {
     icon: IconUsers,
-    title: { pt: 'Aulas de Grupo', en: 'Group Classes' },
-    desc: {
-      pt: 'Treina em comunidade — energia, motivação e resultados partilhados com o grupo.',
-      en: 'Train as a community — shared energy, motivation, and results with the group.',
+    title: { pt: 'Duo', en: 'Duo' },
+    tagline: {
+      pt: 'Treino acompanhado, energia a dobrar.',
+      en: 'Trained together, energy doubled.',
+    },
+    quote: {
+      pt: 'Partilha o foco, mantém a motivação.',
+      en: 'Share the focus, keep the motivation.',
     },
   },
   {
-    icon: IconApple,
-    title: { pt: 'Coaching de Nutrição', en: 'Nutrition Coaching' },
-    desc: {
-      pt: 'Orientação alimentar prática e sustentável para acelerar os teus resultados.',
-      en: 'Practical, sustainable nutrition guidance to accelerate your results.',
+    icon: IconFlame,
+    title: { pt: 'Trio', en: 'Trio' },
+    tagline: {
+      pt: 'Motivação em grupo, acompanhamento individual.',
+      en: 'Group motivation, individual attention.',
+    },
+    quote: {
+      pt: 'Mais dinâmica, mais ritmo, o mesmo foco no resultado.',
+      en: 'More dynamic, more rhythm, same focus on results.',
     },
   },
 ]
 
-const TEAM: { name: string; role: Bilingual; bio: Bilingual; initials: string }[] = [
+// Roles/bios are a neutral placeholder until confirmed per coach — names are real.
+const TEAM: { name: string; role: Bilingual; bio: Bilingual; initials: string; photo?: string }[] = [
   {
-    name: 'Ricardo Silva',
-    role: { pt: 'Fundador & Head Coach', en: 'Founder & Head Coach' },
+    name: 'João Miranda',
+    role: { pt: 'Coach LIFT', en: 'LIFT Coach' },
     bio: {
-      pt: 'Mais de 10 anos a ajudar pessoas em Esposende a treinar com técnica, consistência e propósito.',
-      en: 'Over 10 years helping people in Esposende train with technique, consistency, and purpose.',
+      pt: 'Parte da equipa LIFT, pronto para te acompanhar em cada treino.',
+      en: 'Part of the LIFT team, ready to support you in every session.',
     },
-    initials: 'RS',
+    initials: 'JM',
   },
   {
-    name: 'Beatriz Costa',
-    role: { pt: 'Coach de Força & Condicionamento', en: 'Strength & Conditioning Coach' },
+    name: 'Jorge Azevedo',
+    role: { pt: 'Coach LIFT', en: 'LIFT Coach' },
     bio: {
-      pt: 'Especialista em treino de força, focada em progressão segura e resultados duradouros.',
-      en: 'Strength-training specialist focused on safe progression and lasting results.',
+      pt: 'Parte da equipa LIFT, pronto para te acompanhar em cada treino.',
+      en: 'Part of the LIFT team, ready to support you in every session.',
     },
-    initials: 'BC',
+    initials: 'JA',
   },
   {
-    name: 'Tiago Fernandes',
-    role: { pt: 'Coach de HIIT & Grupo', en: 'HIIT & Group Coach' },
+    name: 'Gabriel Silva',
+    role: { pt: 'Coach LIFT', en: 'LIFT Coach' },
     bio: {
-      pt: 'Traz a energia para cada aula de grupo, mantendo a intensidade alta e a diversão ainda mais alta.',
-      en: 'Brings the energy to every group class, keeping intensity high and fun even higher.',
+      pt: 'Parte da equipa LIFT, pronto para te acompanhar em cada treino.',
+      en: 'Part of the LIFT team, ready to support you in every session.',
     },
-    initials: 'TF',
+    initials: 'GS',
   },
   {
-    name: 'Marta Oliveira',
-    role: { pt: 'Coach de Nutrição', en: 'Nutrition Coach' },
+    name: 'Miguel Rosa',
+    role: { pt: 'Coach LIFT', en: 'LIFT Coach' },
     bio: {
-      pt: 'Ajuda os membros a alinhar a alimentação com os seus objetivos, sem dietas radicais.',
-      en: 'Helps members align their eating with their goals, no crash diets required.',
+      pt: 'Parte da equipa LIFT, pronto para te acompanhar em cada treino.',
+      en: 'Part of the LIFT team, ready to support you in every session.',
     },
-    initials: 'MO',
+    initials: 'MR',
   },
 ]
 
@@ -436,16 +433,43 @@ function Team() {
           subtitle={tr('team_subtitle')}
         />
 
-        <div ref={ref} className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-6 lg:grid-cols-2">
+          <div className="rounded-3xl border border-white/10 bg-charcoal p-7">
+            <p className="text-xs font-bold tracking-wide text-lift-lime uppercase">
+              {tr('team_story_label')}
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-white/70 normal-case">
+              {tr('team_story_body')}
+            </p>
+          </div>
+          <div className="rounded-3xl border border-white/10 bg-charcoal p-7">
+            <p className="text-xs font-bold tracking-wide text-lift-lime uppercase">
+              {tr('team_why_label')}
+            </p>
+            <p className="mt-3 text-lg leading-relaxed text-white italic normal-case">
+              {tr('team_why_body')}
+            </p>
+          </div>
+        </div>
+
+        <div ref={ref} className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {TEAM.map((member) => (
             <div
               key={member.name}
               data-reveal
               className="group relative overflow-hidden rounded-3xl border border-white/10 bg-charcoal p-6 transition-colors hover:border-lift-lime/40"
             >
-              <div className="grid h-16 w-16 place-items-center rounded-2xl bg-lift-lime/10 text-lg font-black text-lift-lime">
-                {member.initials}
-              </div>
+              {member.photo ? (
+                <img
+                  src={member.photo}
+                  alt={member.name}
+                  className="h-16 w-16 rounded-2xl object-cover"
+                />
+              ) : (
+                <div className="grid h-16 w-16 place-items-center rounded-2xl bg-lift-lime/10 text-lg font-black text-lift-lime">
+                  {member.initials}
+                </div>
+              )}
               <h3 className="mt-5 text-lg font-bold tracking-tight text-white normal-case">
                 {member.name}
               </h3>
@@ -477,11 +501,11 @@ function Services() {
         />
 
         <div ref={ref} className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {SERVICES.map((service) => {
-            const Icon = service.icon
+          {PLANS.map((plan) => {
+            const Icon = plan.icon
             return (
               <div
-                key={service.title.en}
+                key={plan.title.en}
                 data-reveal
                 className="rounded-3xl border border-white/10 bg-ink p-7 transition-all hover:-translate-y-1 hover:border-lift-lime/40"
               >
@@ -489,10 +513,13 @@ function Services() {
                   <Icon className="h-6 w-6" />
                 </div>
                 <h3 className="mt-6 text-xl font-bold text-white normal-case">
-                  {service.title[lang]}
+                  {plan.title[lang]}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-white/60 normal-case">
-                  {service.desc[lang]}
+                  {plan.tagline[lang]}
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-lift-lime italic normal-case">
+                  {plan.quote[lang]}
                 </p>
               </div>
             )

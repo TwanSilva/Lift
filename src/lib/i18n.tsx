@@ -41,13 +41,23 @@ export const t = {
     pt: 'Profissionais qualificados e apaixonados que te acompanham em cada treino.',
     en: 'Qualified, passionate professionals who guide every single session.',
   },
+  team_story_label: { pt: 'A Nossa História', en: 'Our Story' },
+  team_story_body: {
+    pt: 'Somos um estúdio de fitness e performance, localizado em Esposende, que privilegia o acompanhamento personalizado para treinos individuais ou em grupo.',
+    en: 'We are a performance & fitness studio, Esposende based, which values the personalized follow-up for individual or group training.',
+  },
+  team_why_label: { pt: 'Porquê LIFT', en: 'Why LIFT' },
+  team_why_body: {
+    pt: 'Do verbo elevar. Subir para uma posição ou nível mais alto. Elevar-se. Superar-se.',
+    en: 'Raise to a higher position or level. Grow up. Overcome.',
+  },
 
   // Services
   services_eyebrow: { pt: 'O Que Oferecemos', en: 'What We Offer' },
   services_title: { pt: 'Programas Feitos Para Ti', en: 'Programs Built For You' },
   services_subtitle: {
-    pt: 'Do treino individual às aulas de grupo, temos o caminho certo para os teus objetivos.',
-    en: 'From one-on-one coaching to group classes, we have the right path to your goals.',
+    pt: 'O treino certo começa com o plano certo. Escolhe o formato que se adapta a ti.',
+    en: 'The right training starts with the right plan. Choose the format that fits you.',
   },
 
   // Reviews
