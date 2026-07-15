@@ -3,6 +3,7 @@
 @theme {
   --font-display: 'Anton', 'Arial Narrow', sans-serif;
   --font-sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-hand: 'Pacifico', cursive;
 
   --color-ink: #0a0a0b;
   --color-charcoal: #131316;
@@ -21,7 +22,7 @@
     margin: 0;
     background: var(--color-ink);
     color: #f2f2f0;
-    font-family: var(--font-sans);
+    font-family: var(--font-hand);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

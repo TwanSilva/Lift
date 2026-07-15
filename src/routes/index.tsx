@@ -401,12 +401,12 @@ function RotatingHeadline() {
   }, [])
 
   return (
-    <h1 className="grid max-w-3xl text-5xl leading-[0.95] font-black text-white sm:text-7xl">
+    <h1 className="grid w-full max-w-3xl min-w-0 text-5xl leading-[0.95] font-black text-white sm:text-7xl">
       {HERO_HEADLINES.map((key, i) => (
         <span
           key={key}
           aria-hidden={i !== active}
-          className={`col-start-1 row-start-1 transition-opacity duration-1000 ease-in-out ${
+          className={`col-start-1 row-start-1 min-w-0 transition-opacity duration-1000 ease-in-out ${
             i === active ? 'opacity-100' : 'opacity-0'
           }`}
         >
@@ -423,7 +423,7 @@ function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
       <video
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-y-0 left-1/2 h-full w-[min(100%,980px)] -translate-x-1/2 object-cover object-[50%_20%]"
         poster={heroPoster}
         autoPlay
         muted
