@@ -383,6 +383,37 @@ function Header() {
   )
 }
 
+const HERO_HEADLINE_ROTATION_MS = 7000
+const HERO_HEADLINES = ['hero_headline_a', 'hero_headline_b'] as const
+
+function RotatingHeadline() {
+  const { tr } = useLang()
+  const [active, setActive] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActive((i) => (i + 1) % HERO_HEADLINES.length)
+    }, HERO_HEADLINE_ROTATION_MS)
+    return () => clearInterval(interval)
+  }, [])
+
+  return (
+    <h1 className="grid max-w-3xl text-5xl leading-[0.95] font-black text-white sm:text-7xl">
+      {HERO_HEADLINES.map((key, i) => (
+        <span
+          key={key}
+          aria-hidden={i !== active}
+          className={`col-start-1 row-start-1 transition-opacity duration-1000 ease-in-out ${
+            i === active ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          {tr(key)}
+        </span>
+      ))}
+    </h1>
+  )
+}
+
 function Hero() {
   const { tr } = useLang()
 
@@ -395,18 +426,14 @@ function Hero() {
         <p className="mb-5 text-sm font-bold tracking-[0.25em] text-lift-lime uppercase">
           {tr('hero_eyebrow')}
         </p>
-        <h1 className="max-w-3xl text-5xl leading-[0.95] font-black text-white sm:text-7xl">
-          {tr('hero_headline_1')}
-          <br />
-          <span className="text-lift-lime">{tr('hero_headline_2')}</span>
-        </h1>
+        <RotatingHeadline />
         <p className="mt-6 max-w-xl text-lg text-white/70 normal-case">
           {tr('hero_subheadline')}
         </p>
 
         <div className="mt-9 flex flex-wrap items-center gap-4">
           <a
-            href={`tel:${PHONE_TEL}`}
+            href="#visit"
             className="rounded-full bg-lift-lime px-7 py-4 text-sm font-bold text-ink transition-transform hover:scale-105"
           >
             {tr('hero_cta_primary')}

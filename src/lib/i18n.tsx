@@ -23,13 +23,16 @@ export const t = {
 
   // Hero
   hero_eyebrow: { pt: 'Performance // Fitness', en: 'Performance // Fitness' },
-  hero_headline_1: { pt: 'Treina mais forte.', en: 'Train harder.' },
-  hero_headline_2: { pt: 'Vive melhor.', en: 'Live better.' },
+  hero_headline_a: { pt: 'Desculpas não queimam calorias.', en: "Excuses don't burn calories." },
+  hero_headline_b: {
+    pt: 'A vida tem altos e baixos, chamamos-lhe agachamentos.',
+    en: 'Life has its ups and downs, we call it squats.',
+  },
   hero_subheadline: {
     pt: 'Treino personalizado e em grupo em Esposende. Coaching real, resultados reais, uma comunidade que te leva mais longe.',
     en: 'Personal and group training in Esposende. Real coaching, real results, a community that pushes you further.',
   },
-  hero_cta_primary: { pt: 'Começa o Teu Trial Grátis', en: 'Start Your Free Trial' },
+  hero_cta_primary: { pt: 'Encontra-nos', en: 'Find Us' },
   hero_cta_secondary: { pt: 'Ver Horários', en: 'See Hours' },
   hero_stat_rating: { pt: 'no Google', en: 'on Google' },
   hero_stat_reviews: { pt: 'avaliações', en: 'reviews' },
