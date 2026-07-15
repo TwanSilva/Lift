@@ -23,6 +23,9 @@ import coachJorgeImg from '../assets/team/coach-jorge.jpg'
 import coachGabrielImg from '../assets/team/coach-gabriel.jpg'
 import coachMiguelImg from '../assets/team/coach-miguel.jpg'
 import teamGroupImg from '../assets/team/team-group.jpg'
+import heroVideoMp4 from '../assets/hero/hero-video.mp4'
+import heroVideoWebm from '../assets/hero/hero-video.webm'
+import heroPoster from '../assets/hero/hero-poster.jpg'
 
 // ---------------------------------------------------------------------------
 // Business constants — swap these (and the images below) to re-theme this
@@ -419,6 +422,19 @@ function Hero() {
 
   return (
     <section id="top" className="relative overflow-hidden">
+      <video
+        className="absolute inset-0 h-full w-full object-cover"
+        poster={heroPoster}
+        autoPlay
+        muted
+        loop
+        playsInline
+        aria-hidden="true"
+      >
+        <source src={heroVideoWebm} type="video/webm" />
+        <source src={heroVideoMp4} type="video/mp4" />
+      </video>
+      <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/75 to-ink/45" />
       <div className="pointer-events-none absolute -top-40 -left-40 h-96 w-96 rounded-full bg-lift-lime/20 blur-[120px]" />
       <div className="pointer-events-none absolute top-1/3 -right-32 h-80 w-80 rounded-full bg-lift-lime/10 blur-[100px]" />
 
