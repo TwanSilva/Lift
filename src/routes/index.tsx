@@ -26,6 +26,9 @@ import teamGroupImg from '../assets/team/team-group.jpg'
 import heroVideoMp4 from '../assets/hero/hero-video.mp4'
 import heroVideoWebm from '../assets/hero/hero-video.webm'
 import heroPoster from '../assets/hero/hero-poster.jpg'
+import reviewCycleImg from '../assets/reviews/training-cycle.jpg'
+import reviewStepupImg from '../assets/reviews/training-stepup.jpg'
+import reviewLiftImg from '../assets/reviews/training-lift.jpg'
 
 // ---------------------------------------------------------------------------
 // Business constants — swap these (and the images below) to re-theme this
@@ -167,6 +170,8 @@ const TESTIMONIALS: Bilingual[] = [
     en: 'Well-maintained equipment and a qualified, dedicated staff make training feel safe and comfortable.',
   },
 ]
+
+const REVIEW_PHOTOS = [reviewCycleImg, reviewStepupImg, reviewLiftImg]
 
 const STATS: { value: string; labelKey: 'reviews_stat_rating_label' | 'reviews_stat_members_label' | 'reviews_stat_years_label' | 'reviews_stat_classes_label' }[] = [
   { value: '5.0★', labelKey: 'reviews_stat_rating_label' },
@@ -605,6 +610,7 @@ function Services() {
 function Reviews() {
   const { tr, lang } = useLang()
   const ref = useReveal<HTMLDivElement>()
+  const galleryRef = useReveal<HTMLDivElement>()
 
   return (
     <section id="reviews" className="relative py-24 sm:py-32">
@@ -644,6 +650,22 @@ function Reviews() {
                 “{quote[lang]}”
               </p>
             </blockquote>
+          ))}
+        </div>
+
+        <div ref={galleryRef} className="mt-14 grid gap-8 sm:grid-cols-3">
+          {REVIEW_PHOTOS.map((photo, i) => (
+            <div
+              key={i}
+              data-reveal
+              className="overflow-hidden rounded-3xl border border-white/10"
+            >
+              <img
+                src={photo}
+                alt={`${BUSINESS_FULL_NAME} — training`}
+                className="aspect-[3/4] w-full object-cover"
+              />
+            </div>
           ))}
         </div>
 
