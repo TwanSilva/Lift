@@ -292,7 +292,7 @@ function LangToggle() {
           onClick={() => setLang(opt.value)}
           className={`rounded-full px-2.5 py-1 text-xs font-bold tracking-wide transition-colors ${
             lang === opt.value
-              ? 'bg-lift-lime text-ink'
+              ? 'bg-lift-blue text-ink'
               : 'text-white/60 hover:text-white'
           }`}
         >
@@ -326,7 +326,7 @@ function Header() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
         <a href="#top" className="text-xl font-black tracking-tight text-white">
           {BUSINESS_NAME}
-          <span className="text-lift-lime">.</span>
+          <span className="text-lift-blue">.</span>
         </a>
 
         <nav className="hidden items-center gap-7 lg:flex">
@@ -345,7 +345,7 @@ function Header() {
           <LangToggle />
           <a
             href={`tel:${PHONE_TEL}`}
-            className="rounded-full bg-lift-lime px-5 py-2.5 text-sm font-bold text-ink transition-transform hover:scale-105"
+            className="rounded-full bg-lift-blue px-5 py-2.5 text-sm font-bold text-ink transition-transform hover:scale-105"
           >
             {tr('nav_cta')}
           </a>
@@ -380,7 +380,7 @@ function Header() {
             <a
               href={`tel:${PHONE_TEL}`}
               onClick={() => setMenuOpen(false)}
-              className="mt-2 rounded-full bg-lift-lime px-5 py-3 text-center text-sm font-bold text-ink"
+              className="mt-2 rounded-full bg-lift-blue px-5 py-3 text-center text-sm font-bold text-ink"
             >
               {tr('nav_cta')}
             </a>
@@ -440,11 +440,11 @@ function Hero() {
         <source src={heroVideoMp4} type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/75 to-ink/45" />
-      <div className="pointer-events-none absolute -top-40 -left-40 h-96 w-96 rounded-full bg-lift-lime/20 blur-[120px]" />
-      <div className="pointer-events-none absolute top-1/3 -right-32 h-80 w-80 rounded-full bg-lift-lime/10 blur-[100px]" />
+      <div className="pointer-events-none absolute -top-40 -left-40 h-96 w-96 rounded-full bg-lift-blue/20 blur-[120px]" />
+      <div className="pointer-events-none absolute top-1/3 -right-32 h-80 w-80 rounded-full bg-lift-blue/10 blur-[100px]" />
 
       <div className="relative mx-auto flex min-h-[92svh] max-w-6xl flex-col justify-center px-5 py-24 sm:px-8">
-        <p className="mb-5 text-sm font-bold tracking-[0.25em] text-lift-lime uppercase">
+        <p className="mb-5 text-sm font-bold tracking-[0.25em] text-lift-blue uppercase">
           {tr('hero_eyebrow')}
         </p>
         <RotatingHeadline />
@@ -455,7 +455,7 @@ function Hero() {
         <div className="mt-9 flex flex-wrap items-center gap-4">
           <a
             href="#visit"
-            className="rounded-full bg-lift-lime px-7 py-4 text-sm font-bold text-ink transition-transform hover:scale-105"
+            className="rounded-full bg-lift-blue px-7 py-4 text-sm font-bold text-ink transition-transform hover:scale-105"
           >
             {tr('hero_cta_primary')}
           </a>
@@ -468,7 +468,7 @@ function Hero() {
         </div>
 
         <div className="mt-12 flex items-center gap-3 text-white">
-          <div className="flex text-lift-lime">
+          <div className="flex text-lift-blue">
             {Array.from({ length: 5 }).map((_, i) => (
               <IconStar key={i} className="h-4 w-4" />
             ))}
@@ -499,7 +499,7 @@ function Team() {
 
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
           <div className="rounded-3xl border border-white/10 bg-charcoal p-7">
-            <p className="text-xs font-bold tracking-wide text-lift-lime uppercase">
+            <p className="text-xs font-bold tracking-wide text-lift-blue uppercase">
               {tr('team_story_label')}
             </p>
             <p className="mt-3 text-base leading-relaxed text-white/70 normal-case">
@@ -507,7 +507,7 @@ function Team() {
             </p>
           </div>
           <div className="rounded-3xl border border-white/10 bg-charcoal p-7">
-            <p className="text-xs font-bold tracking-wide text-lift-lime uppercase">
+            <p className="text-xs font-bold tracking-wide text-lift-blue uppercase">
               {tr('team_why_label')}
             </p>
             <p className="mt-3 text-lg leading-relaxed text-white italic normal-case">
@@ -521,7 +521,7 @@ function Team() {
             <div
               key={member.name}
               data-reveal
-              className="group relative overflow-hidden rounded-3xl border border-white/10 bg-charcoal p-6 transition-colors hover:border-lift-lime/40"
+              className="group relative overflow-hidden rounded-3xl border border-white/10 bg-charcoal p-6 transition-colors hover:border-lift-blue/40"
             >
               {member.photo ? (
                 <img
@@ -530,14 +530,14 @@ function Team() {
                   className="h-16 w-16 rounded-2xl object-cover"
                 />
               ) : (
-                <div className="grid h-16 w-16 place-items-center rounded-2xl bg-lift-lime/10 text-lg font-black text-lift-lime">
+                <div className="grid h-16 w-16 place-items-center rounded-2xl bg-lift-blue/10 text-lg font-black text-lift-blue">
                   {member.initials}
                 </div>
               )}
               <h3 className="mt-5 text-lg font-bold tracking-tight text-white normal-case">
                 {member.name}
               </h3>
-              <p className="mt-1 text-xs font-bold tracking-wide text-lift-lime uppercase">
+              <p className="mt-1 text-xs font-bold tracking-wide text-lift-blue uppercase">
                 {member.role[lang]}
               </p>
               <p className="mt-4 text-sm leading-relaxed text-white/60 normal-case opacity-0 max-h-0 transition-all duration-300 group-hover:max-h-40 group-hover:opacity-100">
@@ -575,7 +575,7 @@ function Services() {
               <div
                 key={plan.title.en}
                 data-reveal
-                className="overflow-hidden rounded-3xl border border-white/10 bg-ink transition-all hover:-translate-y-1 hover:border-lift-lime/40"
+                className="overflow-hidden rounded-3xl border border-white/10 bg-ink transition-all hover:-translate-y-1 hover:border-lift-blue/40"
               >
                 {plan.photo && (
                   <img
@@ -585,7 +585,7 @@ function Services() {
                   />
                 )}
                 <div className="p-7">
-                  <div className="grid h-12 w-12 place-items-center rounded-xl bg-lift-lime text-ink">
+                  <div className="grid h-12 w-12 place-items-center rounded-xl bg-lift-blue text-ink">
                     <Icon className="h-6 w-6" />
                   </div>
                   <h3 className="mt-6 text-xl font-bold text-white normal-case">
@@ -594,7 +594,7 @@ function Services() {
                   <p className="mt-2 text-sm leading-relaxed text-white/60 normal-case">
                     {plan.tagline[lang]}
                   </p>
-                  <p className="mt-3 text-sm leading-relaxed text-lift-lime italic normal-case">
+                  <p className="mt-3 text-sm leading-relaxed text-lift-blue italic normal-case">
                     {plan.quote[lang]}
                   </p>
                 </div>
@@ -626,7 +626,7 @@ function Reviews() {
               key={stat.labelKey}
               className="rounded-2xl border border-white/10 bg-charcoal py-6 text-center"
             >
-              <p className="text-3xl font-black text-lift-lime">{stat.value}</p>
+              <p className="text-3xl font-black text-lift-blue">{stat.value}</p>
               <p className="mt-1 text-xs font-semibold tracking-wide text-white/60 uppercase">
                 {tr(stat.labelKey)}
               </p>
@@ -641,7 +641,7 @@ function Reviews() {
               data-reveal
               className="rounded-3xl border border-white/10 bg-charcoal p-7"
             >
-              <div className="flex text-lift-lime">
+              <div className="flex text-lift-blue">
                 {Array.from({ length: 5 }).map((_, j) => (
                   <IconStar key={j} className="h-4 w-4" />
                 ))}
@@ -674,7 +674,7 @@ function Reviews() {
             href={GOOGLE_REVIEW_URL}
             target="_blank"
             rel="noreferrer"
-            className="rounded-full bg-lift-lime px-6 py-3.5 text-sm font-bold text-ink transition-transform hover:scale-105"
+            className="rounded-full bg-lift-blue px-6 py-3.5 text-sm font-bold text-ink transition-transform hover:scale-105"
           >
             {tr('reviews_leave')}
           </a>
@@ -701,17 +701,17 @@ function Hours() {
     <div className="rounded-3xl border border-white/10 bg-ink p-7">
       <div className="flex items-center justify-between">
         <h3 className="flex items-center gap-2 text-lg font-bold text-white normal-case">
-          <IconClock className="h-5 w-5 text-lift-lime" />
+          <IconClock className="h-5 w-5 text-lift-blue" />
           {tr('hours_title')}
         </h3>
         {isOpen !== null && (
           <span
             className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold normal-case ${
-              isOpen ? 'bg-lift-lime/15 text-lift-lime' : 'bg-white/10 text-white/60'
+              isOpen ? 'bg-lift-blue/15 text-lift-blue' : 'bg-white/10 text-white/60'
             }`}
           >
             <span
-              className={`h-1.5 w-1.5 rounded-full ${isOpen ? 'bg-lift-lime' : 'bg-white/40'}`}
+              className={`h-1.5 w-1.5 rounded-full ${isOpen ? 'bg-lift-blue' : 'bg-white/40'}`}
             />
             {isOpen ? tr('hours_open_now') : tr('hours_closed_now')}
           </span>
@@ -723,7 +723,7 @@ function Hours() {
           <li
             key={row.dayKey}
             className={`flex items-center justify-between py-3 text-sm normal-case ${
-              currentDayKey === row.dayKey ? 'text-lift-lime' : 'text-white/70'
+              currentDayKey === row.dayKey ? 'text-lift-blue' : 'text-white/70'
             }`}
           >
             <span className="font-semibold">{tr(row.dayKey)}</span>
@@ -779,7 +779,7 @@ function Visit() {
             <Hours />
 
             <div className="rounded-3xl border border-white/10 bg-ink p-7">
-              <p className="text-xs font-bold tracking-wide text-lift-lime uppercase">
+              <p className="text-xs font-bold tracking-wide text-lift-blue uppercase">
                 {tr('address_label')}
               </p>
               <p className="mt-2 text-base font-semibold text-white normal-case">
@@ -793,7 +793,7 @@ function Visit() {
                     href={action.href}
                     target={action.href.startsWith('tel:') ? undefined : '_blank'}
                     rel={action.href.startsWith('tel:') ? undefined : 'noreferrer'}
-                    className="flex items-center gap-2 rounded-full border border-white/15 px-4 py-2.5 text-xs font-bold text-white transition-colors hover:border-lift-lime/50 hover:text-lift-lime"
+                    className="flex items-center gap-2 rounded-full border border-white/15 px-4 py-2.5 text-xs font-bold text-white transition-colors hover:border-lift-blue/50 hover:text-lift-blue"
                   >
                     {action.icon}
                     {tr(action.key)}
@@ -832,8 +832,8 @@ function FinalCta() {
         data-reveal
         className="relative mx-auto max-w-5xl overflow-hidden rounded-3xl border border-white/10 bg-charcoal px-8 py-16 text-center sm:px-16"
       >
-        <div className="pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full bg-lift-lime/20 blur-[100px]" />
-        <div className="pointer-events-none absolute -right-24 -bottom-24 h-72 w-72 rounded-full bg-lift-lime/20 blur-[100px]" />
+        <div className="pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full bg-lift-blue/20 blur-[100px]" />
+        <div className="pointer-events-none absolute -right-24 -bottom-24 h-72 w-72 rounded-full bg-lift-blue/20 blur-[100px]" />
 
         <div className="relative">
           <h2 className="text-4xl font-black text-white sm:text-5xl">{tr('final_cta_title')}</h2>
@@ -842,7 +842,7 @@ function FinalCta() {
           </p>
           <a
             href={`tel:${PHONE_TEL}`}
-            className="mt-8 inline-flex items-center gap-3 rounded-full bg-lift-lime px-8 py-4 text-lg font-bold text-ink transition-transform hover:scale-105"
+            className="mt-8 inline-flex items-center gap-3 rounded-full bg-lift-blue px-8 py-4 text-lg font-bold text-ink transition-transform hover:scale-105"
           >
             <IconPhone className="h-5 w-5" />
             {tr('final_cta_button')} · {PHONE_DISPLAY}
@@ -863,7 +863,7 @@ function Footer() {
         <div>
           <p className="text-xl font-black text-white">
             {BUSINESS_NAME}
-            <span className="text-lift-lime">.</span>
+            <span className="text-lift-blue">.</span>
           </p>
           <p className="mt-2 max-w-xs text-sm text-white/50 normal-case">{tr('footer_tagline')}</p>
         </div>
@@ -877,7 +877,7 @@ function Footer() {
               <a
                 key={link.key}
                 href={link.href}
-                className="text-sm text-white/60 transition-colors hover:text-lift-lime"
+                className="text-sm text-white/60 transition-colors hover:text-lift-blue"
               >
                 {tr(link.key)}
               </a>
@@ -890,14 +890,14 @@ function Footer() {
             href={INSTAGRAM_URL}
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-2 text-sm font-semibold text-white/70 transition-colors hover:text-lift-lime"
+            className="flex items-center gap-2 text-sm font-semibold text-white/70 transition-colors hover:text-lift-blue"
           >
             <IconInstagram className="h-4 w-4" />
             {INSTAGRAM_HANDLE}
           </a>
           <a
             href={`tel:${PHONE_TEL}`}
-            className="flex items-center gap-2 text-sm font-semibold text-white/70 transition-colors hover:text-lift-lime"
+            className="flex items-center gap-2 text-sm font-semibold text-white/70 transition-colors hover:text-lift-blue"
           >
             <IconPhone className="h-4 w-4" />
             {PHONE_DISPLAY}
@@ -918,7 +918,7 @@ function MobileCallBar() {
   return (
     <a
       href={`tel:${PHONE_TEL}`}
-      className="fixed inset-x-4 bottom-4 z-50 flex items-center justify-center gap-2 rounded-full bg-lift-lime py-4 text-sm font-bold text-ink shadow-[0_10px_30px_rgba(0,0,0,0.4)] sm:hidden"
+      className="fixed inset-x-4 bottom-4 z-50 flex items-center justify-center gap-2 rounded-full bg-lift-blue py-4 text-sm font-bold text-ink shadow-[0_10px_30px_rgba(0,0,0,0.4)] sm:hidden"
     >
       <IconPhone className="h-4 w-4" />
       {tr('mobile_call_cta')}
@@ -937,7 +937,7 @@ function SectionHeading({
 }) {
   return (
     <div className="max-w-2xl">
-      <p className="text-xs font-bold tracking-[0.25em] text-lift-lime uppercase">{eyebrow}</p>
+      <p className="text-xs font-bold tracking-[0.25em] text-lift-blue uppercase">{eyebrow}</p>
       <h2 className="mt-3 text-3xl font-black text-white sm:text-4xl">{title}</h2>
       {subtitle && <p className="mt-4 text-base text-white/60 normal-case">{subtitle}</p>}
     </div>

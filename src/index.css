@@ -8,8 +8,8 @@
   --color-charcoal: #131316;
   --color-charcoal-2: #1c1c21;
   --color-line: #2a2a30;
-  --color-lift-lime: #d7ff2b;
-  --color-lift-lime-dim: #a8cc1f;
+  --color-lift-blue: #38bdf8;
+  --color-lift-blue-dim: #0ea5e9;
 }
 
 @layer base {
@@ -52,7 +52,7 @@
 }
 
 ::selection {
-  background: var(--color-lift-lime);
+  background: var(--color-lift-blue);
   color: var(--color-ink);
 }
 
